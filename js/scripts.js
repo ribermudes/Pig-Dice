@@ -33,7 +33,11 @@ function rollDie (min, max) {
 function addRolls() {
   var totes = 0;
   for (var i =0; i < diceRolls.length; i++) {
+    if (i ===1) { return totes=0;
+  } else if (i !== 1 ) {
     totes = totes + diceRolls[i];
+  }
+
   }
   return totes
 }
@@ -48,7 +52,7 @@ function addRolls() {
      var runningTotal = addRolls();
      var random = rollDie(1, 6);
      diceRolls.push(random);
-     $('#running-totes').append(runningTotal);
-     $('#current-roll').append(random);
+     $('#running-totes').text(runningTotal);
+     $('#current-roll').text(random);
   });
 });

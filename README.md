@@ -34,14 +34,9 @@ _If you run into any issues or have questions, ideas, or concerns, please feel f
 
 ## Technologies Used
 
-* _HTML_
-* _CSS_
 * _JavaScript_
 * _jQuery (jquery-1.12.4.js)_
 * _Bootstrap (bootstrap.min.css)_
-* _Atom_
-* _Terminal_
-* _Git_
 
 ### License
 
