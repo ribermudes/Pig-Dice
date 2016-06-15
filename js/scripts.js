@@ -2,6 +2,17 @@
 // var turnScore = 0;
 // var player1 = 0;
 // var player2 = 0;
+var diceRolls = [];
+debugger;
+function Die (rolls, runningtotal) {
+   this.diceRolls = [];
+   this.runningTotal = runningTotal;
+}
+
+ Die.prototype.rollTotal = function () {
+   return this.diceRolls + runningTotal;
+ }
+
 
 
 // Math.random() returns a number between 0 and 1. So you take that value and multiply the max value by it, which gives you something like 0.7 * 100 (if your max is 100) which equals a random value of 70
@@ -13,15 +24,31 @@
 // that's too high, so we have to take the minimum out before we multiply the random value
 // then add it back at the end
 // so if Math.random() is 1, then the formula is 1 * (100 - 1) + 1, which is 100, which is what we want for the max value
-
 function rollDie (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-console.log(rollDie(1, 6));
+// This function takes the diceRolls array and loops through it, adds the indexes together to return a total
+
+function addRolls() {
+  var totes = 0;
+  for (var i =0; i < diceRolls.length; i++) {
+    totes = totes + diceRolls[i];
+  }
+  return totes
+}
+
+
 
 // ===== Frontend Logic =====
 
-// $(document).ready(function(){
-//   $(" ").submit(function(event){
-//     event.preventDefault();
+ $(document).ready(function() {
+   $("#button-task").click(function(event){
+     event.preventDefault();
+     var runningTotal = addRolls();
+     var random = rollDie(1, 6);
+     diceRolls.push(random);
+     $('#running-totes').append(runningTotal);
+     $('#current-roll').append(random);
+  });
+});
