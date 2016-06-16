@@ -17,6 +17,7 @@ Button to roll dice   | click roll | rolls dice, updates running total display w
 Button to hold turn  | click hold  | holds turn and pushes running total to player score.
 Player rolls 1 | click roll and result is 1  | reset score to 0, push 0 to player score.
 First player to get 100 wins game |  Score=100 | display winner, reset game.
+one property for the runningTotal and one function that rolls the die if the die is one it sets property to zero and if it is other it adds to the total g
 
 
 ## Setup/Installation Requirements
