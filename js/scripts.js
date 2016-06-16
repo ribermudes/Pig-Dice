@@ -9,6 +9,7 @@
 // that's too high, so we have to take the minimum out before we multiply the random value
 // then add it back at the end
 // so if Math.random() is 1, then the formula is 1 * (100 - 1) + 1, which is 100, which is what we want for the max value
+debugger;
 function rollDie (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
@@ -26,17 +27,49 @@ function Die() {
   return roll;
  }
 
-function Player() {
+function Player(turn) {
   this.score = 0;
+  this.currentPlayer = turn;
+  this.currentRoll = 0;
+  this.currentTotal = 0;
 }
 
-// ===== Frontend Logic ===== UI logic
+  // Player.prototype.winner = function () {
+  // if (this.score === 10) { alert ("We have a winner!");
+  //   }
+  // }
+
+  Player.prototype.buttonToggle = function () {
+
+    var roll = die.rollTotal();
+    if (roll === 1) {
+      if () {
+        this.currentPlayer = false;
+        return 'Roll for Player 2';
+      } else {
+        this.currentPlayer = true;
+        return 'Roll for Player 1';
+      }
+    }
+  }
+
+  Player.prototype.updateScore = function () {
+    if(true){
+      playerOne.score += die.runningTotal;
+
+    } else {
+      playerTwo.score += die.runningTotal;
+
+    }
+  }
+// ===== Frontend Logic =====
 
  $(document).ready(function() {
+  //  var turnCount = 0;
    var die = new Die();
-   var playerOne = new Player();
-   var playerTwo = new Player();
-   var isPlayerOne = true;
+   var playerOne = new Player(true);
+   var playerTwo = new Player(false);
+   //var isPlayerOne = true;
    $('#player-one-score').text(playerOne.score);
    $('#player-two-score').text(playerTwo.score);
    $('#running-totes').text(0);
@@ -45,19 +78,19 @@ function Player() {
 
    $("#button-play").click(function(event){
      event.preventDefault();
-// needs winner notification
      var roll = die.rollTotal();
      $('#current-roll').text(roll);
-
-     if (roll === 1) {
-       if (isPlayerOne) {
-         isPlayerOne = false;
-         $('#button-play').text('Roll for Player 2');
-       } else {
-         isPlayerOne = true;
-         $('#button-play').text('Roll for Player 1');
-       }
-     }
+     $('#button-play').text(playerOne.buttonToggle())
+     $('#button-play').text(playerTwo.buttonToggle())
+    //  if (roll === 1) {
+    //    if (isPlayerOne) {
+    //      isPlayerOne = false;
+    //      $('#button-play').text('Roll for Player 2');
+    //    } else {
+    //      isPlayerOne = true;
+    //      $('#button-play').text('Roll for Player 1');
+    //    }
+    //  }
 
     $('#current-roll').text(roll);
     $('#running-totes').text(die.runningTotal);
@@ -67,15 +100,15 @@ function Player() {
   $("#button-hold").click(function(event){
     event.preventDefault();
 
-    if(isPlayerOne){
-      playerOne.score += die.runningTotal;
-      isPlayerOne = false;
-      $('#button-play').text('Roll for Player 2');
-    } else {
-      playerTwo.score += die.runningTotal;
-      isPlayerOne = true;
-      $('#button-play').text('Roll for Player 1');
-    }
+    // if(isPlayerOne){
+    //   playerOne.score += die.runningTotal;
+    //   isPlayerOne = false;
+    //   $('#button-play').text('Roll for Player 2');
+    // } else {
+    //   playerTwo.score += die.runningTotal;
+    //   isPlayerOne = true;
+    //   $('#button-play').text('Roll for Player 1');
+    // }
 
     die.runningTotal = 0;
     $('#player-one-score').text(playerOne.score);
