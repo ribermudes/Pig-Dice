@@ -12,6 +12,7 @@
 function rollDie (min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
+
 function Die() {
    this.runningTotal = 0;
 }
@@ -44,7 +45,7 @@ function Player() {
 
    $("#button-play").click(function(event){
      event.preventDefault();
-// needs winner notification 
+// needs winner notification
      var roll = die.rollTotal();
      $('#current-roll').text(roll);
 
